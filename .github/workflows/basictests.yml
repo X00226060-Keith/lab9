@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Make executable
-        uses: chmod +x ./validate-date.sh
+        run: chmod +x ./validate-date.sh
 
       - name: Test 1 - Valid Data
         run: |
