@@ -20,5 +20,6 @@ jobs:
 
       - name: Test 1 - Valid Data
         run: |
-          OUTPUT=$(./validate-date.sh)
+          OUTPUT=$(bash validate-date.sh "pearse mccarthy" "0831122334")
+
           
