@@ -2,7 +2,10 @@ name : Lab 9 Basic Tests
 
 on:
   push:
-    workflow_dispatch
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
 
 jobs:
   lab9-basic-tests:
@@ -12,20 +15,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Make executable
+        uses: chmod +x ./validate-date.sh
+
       - name: Test 1 - Valid Data
         run: |
-          result=$ (bash validate-date.sh "pearse mccarthy" "0892224444")
-          echo "$result"
-          echo "PASS"
-
-      - name: Test 2 - Invalid Data
-        run:
-          result=$ (bash validate-date.sh "pearse mccarthy" "08922214444")
-          echo "$result"
-          echo "FAIL"
-
-      - name: Test 3 - Invalid Data
-        run:
-          result=$ (bash validate-date.sh "pearse mccarthy longer longer" "0892224444")
-          echo "$result"
-          echo "FAIL"
+          OUTPUT=$(./validate-date.sh)
+          
